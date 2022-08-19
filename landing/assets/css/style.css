@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container_nav {
+    font-family: 'Russo One', sans-serif;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+.brand {
+    font-weight: bold;
+    font-size: 30px;
+    text-decoration: none;
+    color: black;
+;
+}
+
+.site-header {
+    position: relative;
+    background-color: #A7AFB2;
+}
+
+.site-header__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.nav__wrapper {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: Max(220px, 20%);
+    bottom: 0;
+    z-index: 1;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+    display: block;
+}
+
+.nav__wrapper.active {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(0);
+    transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+    background-color: black;
+    color: white;
+}
+
+.nav__item {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.nav__item a {
+    display: block;
+    padding: 1rem;
+    text-decoration: none;
+    color: grey;
+    font-size: 24px;
+}
+
+.nav__item a:hover {
+    color: white;
+}
+
+.nav__toggle {
+    all: unset;
+    margin: 10px;
+    font-size: 24px;
+}
+
+.nav__toggle:hover {
+    color: white;
+}
+
+.button {
+    text-decoration: none;
+    color: black;
+    margin: 10px;
+    font-size: 24px;
+}
+
+.button:hover {
+    color: white;
+}
+
+.arrow_nav {
+    display: flex;
+    margin-left: 10px;
+}
+
+.control {
+    position: absolute;
+    top: 50%;
+    width: 40px;
+    height: 40px;
+    background: #A7AFB2;
+    border-radius: 20px;
+    margin-top: -20px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+}
+.prev,
+.next {
+    background-size: 22px;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+.prev {
+    background-image: url(/landing/assets/img/chevron_left.png);
+    left: 10px;
+}
+.next {
+    background-image: url(/landing/assets/img/chevron_right.png);
+    right: 10px;
+    overflow: hidden;
+}
+.prev:active,
+.next:active {
+    transform: scale(0.8);
+}
+
+.container {
+    position: relative;
+    background: #aad5f6;
+}
+.slide-1 {
+    background: url('../img/1.jpg');
+}
+.slide-2 {
+    background: url('../img/2.jpg');
+}
+.slide-3 {
+    background: url('../img/3.jpg');
+}
+
+.slide {
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow-x: hidden;
+}
+.caption {
+    background: rgba(0, 0, 0, 0.03);
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 40px 0px;
+}
+.caption h3 {
+    color: #fff;
+    text-align: center;
+    font-size: 50px;
+    padding: 18px;
+}
+.caption p {
+    max-width: 600px;
+    width: 90%;
+    margin: 0px auto;
+    color: #ccc;
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.5em;
+}
+
