@@ -6,12 +6,16 @@ class db
 
     private string $db_host = '127.0.0.1';
     private string $db_name = 'website';
-    private string $db_user = 'valu';
-    private string $db_pw = 'valu';
+    private string $db_user = 'root';
+    private string $db_pw = '';
 
     private function initiateConnection(): PDO
     {
-        return new PDO('mysql:host=' . $this->db_host . ';dbname=' . $this->db_name, $this->db_user, $this->db_pw);
+        try {
+            return new PDO('mysql:host=' . $this->db_host . ';dbname=' . $this->db_name, $this->db_user, $this->db_pw);
+        } catch (PDOException) {
+            die('[MYSQL] Could not establish database connection');
+        }
     }
 
     public function getConnection(): PDO
