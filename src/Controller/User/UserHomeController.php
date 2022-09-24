@@ -7,10 +7,16 @@
 
 namespace Valu\App\Controller\User;
 
+use Valu\App\Controller\AbstractController;
 use Valu\App\Support\Content\ContentHandler;
 
-class UserHomeContoller
+class UserHomeController extends AbstractController
 {
     public function __construct(protected ContentHandler $contentHandler) {}
+
+    public function home()
+    {
+        $this->renderUser('pages/home', []);
+    }
 
 }
