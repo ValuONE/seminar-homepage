@@ -7,7 +7,7 @@
 
 use Valu\App\Controller\User\UserAddController;
 use Valu\App\Controller\User\UserBlogController;
-use Valu\App\Controller\User\UserHomeContoller;
+use Valu\App\Controller\User\UserHomeController;
 use Valu\App\Controller\User\UserVerifyController;
 use Valu\App\Controller\User\UserViewController;
 use Valu\App\Support\Authentication\AuthService;
@@ -23,7 +23,7 @@ $userVerifyController = new UserVerifyController($authService);
 $userAddController = new UserAddController($contentHandler);
 $userBlogController = new UserBlogController($contentHandler);
 $userViewController = new UserViewController($contentHandler);
-$userHomeController = new UserHomeContoller($contentHandler);
+$userHomeController = new UserHomeController($contentHandler);
 
 $route = @(string) ($_GET['route'] ?? 'login');
 
