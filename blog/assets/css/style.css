@@ -7,9 +7,8 @@
 }
 
 .container {
-    margin-top: 20px;
-    margin-left: 10px;
-    margin-right: 10px;
+    max-width: 90%;
+    margin: 1rem auto auto;
 }
 
 .container-item {
@@ -125,4 +124,20 @@
 
 .button:hover {
     color: white;
+}
+
+.add-button-container {
+    max-width: 10rem;
+    margin: 1rem auto auto;
+}
+
+.add-button {
+    height: 2rem;
+    width: 9rem;
+    border-radius: 0.2rem;
+}
+
+.add-button:hover {
+    cursor: pointer;
+    background-color: #bdc3c7;
 }
