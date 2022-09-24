@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
             if ($data['verified_at'] == 0)  {
                 header('Location: ../../../change_pw/change.php');
             } else {
-                header('Location: ../../../add/add.php');
+                header('Location: ../../../blog/blog.php');
             }
         } else {
             // Falsches Passwort
