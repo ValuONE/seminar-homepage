@@ -24,7 +24,7 @@ if (isset($_POST['submit'])) {
 
             if ($stmt) {
                 // STMT suceed
-                header('Location: ../../../add/add.php?stmt=suceed');
+                header('Location: ../../../blog/blog.php');
             } else {
                 //STMT failed
                 header('Location: ../../change/change.php?stmt=failed');
