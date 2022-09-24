@@ -18,12 +18,24 @@ body {
 
 }
 
-.btn-back {
-    padding: 10px;
-    margin: 25px;
+.btn-back, .btn-delete, .btn-edit {
+    float: left;
+    margin-left: 25px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.btn-back:hover {
+    cursor: pointer;
+}
+
+.container {
+    clear: both;
 }
 
 .title {
+    display: inline;
     text-decoration: underline;
     margin-left: 25px;
     font-weight: normal;
@@ -50,4 +62,24 @@ body {
     margin: 25px;
     border-radius: 12px;
     max-width: 90vw;
+}
+
+.edit-container {
+    clear: both;
+    margin-left: 25px;
+}
+
+.img-desc {
+    margin: 25px;
+}
+
+.warning {
+    clear: both;
+    color: #EE2400;
+    margin-left: 25px;
+}
+
+.warning-delete {
+    margin-left: 25px;
+    margin-top: 10px;
 }
