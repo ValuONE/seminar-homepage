@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require '../Database.php';
 $db = new db();
 
@@ -33,11 +35,16 @@ $data = $db->fetchAllQuery('SELECT * FROM blog ORDER BY bid DESC');
         </a>
     </div>
 </header>
+    <?php if (isset($_SESSION['username'])): ?>
+        <div class="add-button-container">
+            <a href="../add/add.php"><button class="add-button">Blog hinzufügen</button></a>
+        </div>
+    <?php endif; ?>
     <div class="container">
         <?php foreach ($data as $d) { ?>
             <div class="container-item">
                 <a href="../view/view.php?id=<?php echo $d['bid'];?>">
-                    <img src="../add/assets/php/files/<?php echo $d['filename'];?>">
+                    <img src="../add/assets/php/files/<?php echo $d['filename'];?>" alt="Picture">
                     <h3><?php echo $d['title'];?></h3>
                     <p><?php echo $d['created_at'];?></p>
                 </a>
