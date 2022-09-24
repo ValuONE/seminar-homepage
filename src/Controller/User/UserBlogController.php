@@ -7,10 +7,22 @@
 
 namespace Valu\App\Controller\User;
 
+use Valu\App\Controller\AbstractController;
 use Valu\App\Support\Content\ContentHandler;
 
-class UserBlogController
+class UserBlogController extends AbstractController
 {
     public function __construct(protected ContentHandler $contentHandler) {}
+
+    public function blog()
+    {
+        $this->contentHandler->ensureSession();
+
+        $data = $this->contentHandler->fetchAll();
+
+        $this->renderUser('pages/blog', [
+            'data' => $data
+        ]);
+    }
 
 }
