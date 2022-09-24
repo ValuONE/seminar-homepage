@@ -36,25 +36,30 @@ if (!isset($_SESSION['username'])) {
     </header>
     <form class="add-section" method="post" action="assets/php/add.php" enctype="multipart/form-data">
         <h3 class="add-header">Blog hinzufügen</h3>
-        <input type="text" name="title" placeholder="Titel" required>
-        <textarea id="myTextarea" name="content" placeholder="Hier kannst du bis zu 5000 Zeichen Text schreiben!" maxlength="5000"></textarea>
+        <label>
+            <input type="text" name="title" placeholder="Titel" required>
+        </label>
+        <label for="myTextarea">
+            <textarea id="myTextarea" name="content" placeholder="Hier kannst du bis zu 5000 Zeichen Text schreiben!" maxlength="5000"></textarea>
+        </label>
         <input type="file" name="file" required>
         <input type="submit" name="submit" value="Hinzufügen">
         <?php
-            if (isset($_REQUEST['info'])) {
-                echo '<p class="warning">Datenbank-Fehler!</p>';
-            }
-
-            if (isset($_REQUEST['size'])) {
-                echo '<p class="warning">Datei darf nicht größer als 150MB sein.</p>';
-            }
-
-            if (isset($_REQUEST['file'])) {
-                echo '<p class="warning">Die Datei ist beschädigt.</p>';
-            }
-
-            if (isset($_REQUEST['type'])) {
-                echo '<p class="warning">Es die Datei muss ein jpg, jpeg oder ein png sein.</p>';
+            if (isset($_GET['error'])) {
+                switch ($_GET['error']) {
+                    case ('stmt_failed'):
+                        echo '<p class="warning">Datenbank-Fehler!</p>';
+                        break;
+                    case ('too_big'):
+                        echo '<p class="warning">Datei darf nicht größer als 150MB sein.</p>';
+                        break;
+                    case ('damaged'):
+                        echo '<p class="warning">Die Datei ist beschädigt.</p>';
+                        break;
+                    case ('file_wrong'):
+                        echo '<p class="warning">Es die Datei muss ein jpg, jpeg oder ein png sein.</p>';
+                        break;
+                }
             }
         ?>
     </form>
