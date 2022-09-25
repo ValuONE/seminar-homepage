@@ -6,7 +6,7 @@
  */
 
 try {
-    $pdo = new PDO('mysql:host=localhost;dbname=website-2', 'root', '', [
+    $pdo = new PDO('mysql:host=localhost;dbname=website', 'root', '', [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
     ]);
 
