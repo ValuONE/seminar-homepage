@@ -42,7 +42,7 @@ class UserVerifyController extends AbstractController
             }
         }
 
-        $this->renderUser('pages/verify', [
+        $this->renderUser('pages/verify',  'verify.main.css', [
             'error' => $error,
             'notMatching' => $notMatching
         ]);
