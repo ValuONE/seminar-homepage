@@ -25,7 +25,7 @@ $userBlogController = new UserBlogController($contentHandler);
 $userViewController = new UserViewController($contentHandler);
 $userHomeController = new UserHomeController($contentHandler);
 
-$route = @(string) ($_GET['route'] ?? 'login');
+$route = @(string) ($_GET['route'] ?? 'home');
 
 switch ($route) {
     case ('home'): {
@@ -52,5 +52,8 @@ switch ($route) {
     case ('view'): {
         $userViewController->view();
         break;
+    }
+    default: {
+        $userHomeController->renderError();
     }
 }
