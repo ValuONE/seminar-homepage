@@ -1,0 +1,86 @@
+body {
+    overflow: hidden;
+}
+
+.arrow_nav {
+    display: flex;
+    margin-left: 10px;
+}
+
+.control {
+    position: absolute;
+    top: 50%;
+    width: 40px;
+    height: 40px;
+    background: #A7AFB2;
+    border-radius: 20px;
+    margin-top: -20px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+}
+.prev,
+.next {
+    background-size: 22px;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+.prev {
+    background-image: url('http://localhost:63342/seminar-homepage-2/assets/img/chevron_left.png');
+    left: 10px;
+}
+.next {
+    background-image: url('http://localhost:63342/seminar-homepage-2/assets/img/chevron_right.png');
+    right: 10px;
+    overflow: hidden;
+}
+.prev:active,
+.next:active {
+    transform: scale(0.8);
+}
+
+.container {
+    position: relative;
+    background: #aad5f6;
+}
+.slide-1 {
+    background: url('http://localhost:63342/seminar-homepage-2/assets/img/1.jpg');
+}
+.slide-2 {
+    background: url('http://localhost:63342/seminar-homepage-2/assets/img/2.jpg');
+}
+.slide-3 {
+    background: url('http://localhost:63342/seminar-homepage-2/assets/img/3.jpg');
+}
+
+.slide {
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow-x: hidden;
+}
+.caption {
+    background: rgba(0, 0, 0, 0.03);
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 40px 0;
+}
+.caption h3 {
+    color: #fff;
+    text-align: center;
+    font-size: 50px;
+    padding: 18px;
+}
+.caption p {
+    max-width: 600px;
+    width: 90%;
+    margin: 0 auto;
+    color: #ccc;
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.5em;
+}
