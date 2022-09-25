@@ -30,6 +30,6 @@ class UserLoginController extends AbstractController
                 }
             }
         }
-        $this->renderUser('pages/login', []);
+        $this->renderUser('pages/login',  'login.main.css', []);
     }
 }
