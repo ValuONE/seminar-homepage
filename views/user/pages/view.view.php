@@ -18,7 +18,7 @@ if (isset($_POST['startEdit']) || isset($showEdit)): ?>
             </label><br>
             <label><br>
                 Inhalt:<br>
-                <textarea id="myTextarea" name="content" maxlength="5000"><?php echo $data['content'];?></textarea>
+                <textarea class="textarea" id="myTextarea" name="content" maxlength="5000"><?php echo $data['content'];?></textarea>
             </label>
         </div>
     </form>
