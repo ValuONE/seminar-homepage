@@ -16,7 +16,7 @@ class UserHomeController extends AbstractController
 
     public function home()
     {
-        $this->renderUser('pages/home', []);
+        $this->renderUser('pages/home', 'home.main.css');
     }
 
 }
