@@ -20,7 +20,7 @@ class UserBlogController extends AbstractController
 
         $data = $this->contentHandler->fetchAll();
 
-        $this->renderUser('pages/blog', [
+        $this->renderUser('pages/blog', 'blog.main.css', [
             'data' => $data
         ]);
     }
