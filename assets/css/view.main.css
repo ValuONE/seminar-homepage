@@ -1,0 +1,76 @@
+.btn-back a {
+    text-decoration: none;
+    color: black;
+
+}
+
+.btn-back, .btn-delete, .btn-edit {
+    float: left;
+    margin-left: 25px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.btn-back:hover {
+    cursor: pointer;
+}
+
+.container {
+    clear: both;
+}
+
+.title {
+    display: inline;
+    text-decoration: underline;
+    margin-left: 25px;
+    font-weight: normal;
+}
+
+.date {
+    margin-left: 25px;
+    margin-top: 5px;
+    font-style: italic;
+    font-weight: lighter;
+}
+
+.text {
+    margin: 25px;
+}
+
+.author {
+    margin: 25px;
+    font-size: 15px;
+    font-style: italic;
+}
+
+.img {
+    margin: 25px;
+    border-radius: 12px;
+    max-width: 90vw;
+}
+
+.edit-container {
+    clear: both;
+    margin-left: 25px;
+}
+
+.img-desc {
+    margin: 25px;
+}
+
+.warning {
+    clear: both;
+    color: #EE2400;
+    margin-left: 25px;
+}
+
+.warning-delete {
+    margin-left: 25px;
+    margin-top: 10px;
+}
+
+.textarea {
+    width: 90%;
+    height: 8rem;
+}
