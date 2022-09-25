@@ -86,5 +86,43 @@ class ContentHandler
         if (session_status() === PHP_SESSION_NONE) session_start();
     }
 
+    public function checkBlogById(int $id, string $username): bool
+    {
+        $stmt = $this->pdo->prepare('SELECT * FROM `blog` WHERE `bid` = :bid');
+        $stmt->bindValue('bid', $id);
+        $success = $stmt->execute();
 
+        if (!$success) return false;
+
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $data = $stmt->fetch();
+
+        if ($data['author'] !== $username) return false;
+
+        return true;
+    }
+
+    public function updateBlog(int $id, string $title, string $content): bool
+    {
+        $stmt = $this->pdo->prepare('UPDATE `blog` SET `title` = :title, `content` = :content WHERE `bid` = :id');
+        $stmt->bindValue('title', $title);
+        $stmt->bindValue('content', $content);
+        $stmt->bindValue('id', $id);
+        $success = $stmt->execute();
+
+        if (!$success) return false;
+
+        return true;
+    }
+
+    public function deleteBlogById(int $id): bool
+    {
+        $stmt = $this->pdo->prepare('DELETE FROM `blog` WHERE `bid` = :id');
+        $stmt->bindValue('id', $id);
+        $success = $stmt->execute();
+
+        if (!$success) return false;
+
+        return true;
+    }
 }
