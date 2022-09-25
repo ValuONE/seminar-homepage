@@ -37,7 +37,7 @@ class UserAddController extends AbstractController
             }
         }
 
-        $this->renderUser('pages/add', [
+        $this->renderUser('pages/add', 'add.main.css',  [
             'error' => $error
         ]);
     }
