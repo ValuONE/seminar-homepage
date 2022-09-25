@@ -1,0 +1,47 @@
+.container {
+    max-width: 90%;
+    margin: 1rem auto auto;
+}
+
+.container-item {
+    width: 300px;
+    overflow: hidden;
+    border: 1px solid black;
+    margin: 10px;
+    float: left;
+    border-radius: 13px;
+}
+
+.container-item a {
+    text-decoration: none;
+    color: black;
+}
+
+.container-item:hover {
+    background-color: #bdc3c7;
+}
+
+.container-item img {
+    width: 300px;
+}
+
+.container-item h3,p {
+    text-align: center;
+    padding: 5px;
+}
+
+.add-button-container {
+    max-width: 10rem;
+    margin: 1rem auto auto;
+}
+
+.add-button {
+    height: 2rem;
+    width: 9rem;
+    border-radius: 0.2rem;
+}
+
+.add-button:hover {
+    cursor: pointer;
+    background-color: #bdc3c7;
+}
