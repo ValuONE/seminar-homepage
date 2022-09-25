@@ -9,7 +9,7 @@ namespace Valu\App\Controller;
 
 abstract class AbstractController
 {
-    protected function renderUser($path, array $data = [], bool $layout = true): void
+    protected function renderUser($path, string $style, array $data = [], bool $layout = true): void
     {
         ob_start();
         extract($data);
@@ -19,7 +19,6 @@ abstract class AbstractController
 
         if ($layout) {
             require __DIR__ . '/../../views/user/layouts/main.view.php';
-            return;
         }
     }
 
