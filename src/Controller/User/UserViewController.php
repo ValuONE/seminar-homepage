@@ -17,6 +17,7 @@ class UserViewController extends AbstractController
     public function view(): void
     {
         $data = null;
+        $showEdit = null;
 
         $this->contentHandler->ensureSession();
 
@@ -28,8 +29,49 @@ class UserViewController extends AbstractController
             }
         }
 
-        $this->renderUser('pages/view', [
-            'data' => $data
+        if (isset($_POST['edit'])) {
+            $id = @(int) ($_POST['id'] ?? '');
+            $title = @(string) ($_POST['title'] ?? '');
+            $content = @(string) ($_POST['content'] ?? '');
+
+            if (!empty($id) && !empty($title) && !empty($content)) {
+                $result = $this->contentHandler->checkBlogById($id, $_SESSION['username']);
+
+                if ($result) {
+                    $result = $this->contentHandler->updateBlog($id, $title, $content);
+
+                    if (!$result) {
+                        $showEdit = true;
+                    }
+                }
+            } else {
+                $showEdit = true;
+            }
+            $data = $this->contentHandler->fetchBlogById($id);
+        }
+
+        if (isset($_POST['delete'])) {
+            $id = @(int) ($_POST['id'] ?? '');
+
+            if (!empty($id)) {
+                $result = $this->contentHandler->checkBlogById($id, $_SESSION['username']);
+
+                if ($result) {
+                    $result = $this->contentHandler->deleteBlogById($id);
+
+                    if ($result) {
+                        header('Location: ./?route=blog');
+                        die();
+                    } else {
+                        $data = $this->contentHandler->fetchBlogById($id);
+                    }
+                }
+            }
+        }
+
+        $this->renderUser('pages/view',  'view.main.css', [
+            'data' => $data,
+            'showEdit' => $showEdit
         ]);
     }
 }
