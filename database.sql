@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 25. Sep 2022 um 16:20
+-- Erstellungszeit: 26. Sep 2022 um 12:14
 -- Server-Version: 10.4.24-MariaDB
 -- PHP-Version: 8.1.6
 
@@ -41,6 +41,32 @@ CREATE TABLE `blog` (
 -- --------------------------------------------------------
 
 --
+-- Tabellenstruktur für Tabelle `images`
+--
+
+CREATE TABLE `images` (
+                          `id` int(11) NOT NULL,
+                          `author` varchar(255) NOT NULL,
+                          `filename` varchar(255) NOT NULL,
+                          `likes` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `likes`
+--
+
+CREATE TABLE `likes` (
+                         `id` int(11) NOT NULL,
+                         `image_id` int(11) NOT NULL,
+                         `voted_by` varchar(255) NOT NULL,
+                         `voted_at` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Tabellenstruktur für Tabelle `users`
 --
 
@@ -63,6 +89,19 @@ ALTER TABLE `blog`
     ADD UNIQUE KEY `bid` (`bid`);
 
 --
+-- Indizes für die Tabelle `images`
+--
+ALTER TABLE `images`
+    ADD PRIMARY KEY (`id`);
+
+--
+-- Indizes für die Tabelle `likes`
+--
+ALTER TABLE `likes`
+    ADD PRIMARY KEY (`id`),
+    ADD KEY `image_id` (`image_id`);
+
+--
 -- Indizes für die Tabelle `users`
 --
 ALTER TABLE `users`
@@ -79,10 +118,32 @@ ALTER TABLE `blog`
     MODIFY `bid` int(255) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT für Tabelle `images`
+--
+ALTER TABLE `images`
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT für Tabelle `likes`
+--
+ALTER TABLE `likes`
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT für Tabelle `users`
 --
 ALTER TABLE `users`
     MODIFY `uid` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints der exportierten Tabellen
+--
+
+--
+-- Constraints der Tabelle `likes`
+--
+ALTER TABLE `likes`
+    ADD CONSTRAINT `likes_ibfk_1` FOREIGN KEY (`image_id`) REFERENCES `images` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
