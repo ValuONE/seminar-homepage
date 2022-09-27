@@ -16,6 +16,33 @@ class UserVoteController extends AbstractController
 
     public function vote(): void
     {
-        $this->renderUser('pages/vote', 'vote.main.css', []);
+        $error = null;
+        $images = $this->voteHandler->fetchAllOfUser($_SESSION['username']);
+
+        if(isset($_POST['upload'])) {
+            $file = ($_FILES['file'] ?? '');
+            $count = count($_FILES['file']['name']);
+
+            if ($count === 5) {
+                if (!empty($file)) {
+                    $result = $this->voteHandler->addItem($file, $_SESSION['username']);
+
+                    $images = $this->voteHandler->fetchAllOfUser($_SESSION['username']);
+
+                    if (!$result) {
+                        $error = true;
+                    }
+                }
+            }
+        }
+
+        if (isset($_POST['confirm'])) {
+
+        }
+
+        $this->renderUser('pages/vote', 'vote.main.css', [
+            'error' => $error,
+            'images' => $images
+        ]);
     }
 }
