@@ -79,7 +79,7 @@ class AuthService
         if (!isset($_SESSION['username'])) header('Location: ./?route=login');
     }
 
-    private function ensureSession(): void
+    public function ensureSession(): void
     {
         if (session_status() === PHP_SESSION_NONE) session_start();
     }
