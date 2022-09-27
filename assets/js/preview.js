@@ -1,5 +1,4 @@
 $(function() {
-    // Multiple images preview in browser
     const imagesPreview = function(input, placeToInsertImagePreview) {
 
         if (input.files) {
