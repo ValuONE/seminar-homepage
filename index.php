@@ -33,10 +33,12 @@ $route = @(string) ($_GET['route'] ?? 'home');
 
 switch ($route) {
     case ('home'): {
+        $authService->ensureSession();
         $userHomeController->home();
         break;
     }
     case ('blog'): {
+        $authService->ensureSession();
         $userBlogController->blog();
         break;
     }
@@ -46,6 +48,7 @@ switch ($route) {
         break;
     }
     case ('login'): {
+        $authService->ensureSession();
         $userLoginController->login();
         break;
     }
@@ -55,14 +58,17 @@ switch ($route) {
         break;
     }
     case ('add'): {
+        $authService->ensureSession();
         $userAddController->add();
         break;
     }
     case ('view'): {
+        $authService->ensureSession();
         $userViewController->view();
         break;
     }
     default: {
+        $authService->ensureSession();
         $userHomeController->renderError();
     }
 }
