@@ -31,7 +31,6 @@ class ContentHandler
         $fileTmpName = $file['tmp_name'];
         $fileSize = $file['size'];
         $fileError = $file['error'];
-        $fileType = $file['type'];
 
         $fileExt = explode(".", $fileName);
         $fileActualExt = strtolower(end($fileExt));
@@ -52,7 +51,7 @@ class ContentHandler
 
         $fileNameNew = "blog" . "_" . uniqid() . "." . $fileActualExt;
 
-        $fileDest = __DIR__ . '/../../../assets/uploads/' . $fileNameNew;
+        $fileDest = __DIR__ . '/../../../assets/uploads_blog/' . $fileNameNew;
 
         move_uploaded_file($fileTmpName, $fileDest);
 
