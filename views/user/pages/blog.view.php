@@ -22,7 +22,7 @@ if (isset($_SESSION['username'])): ?>
 
             <div class="container-item">
                 <a href="./?route=view&id=<?php echo $d['bid'];?>">
-                    <img src="../../../assets/uploads/<?php echo $d['filename'];?>" alt="Picture">
+                    <img src="../../../assets/uploads_blog/<?php echo $d['filename'];?>" alt="Picture">
                     <h3><?php echo $d['title'];?></h3>
                     <p><?php echo date("j.n.Y", $d['created_at']);?></p>
                 </a>
