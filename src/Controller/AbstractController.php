@@ -35,6 +35,10 @@ abstract class AbstractController
 
     public function renderError(): void
     {
+        ob_start();
         require __DIR__ . '/../../views/user/pages/error.view.php';
+        $content = ob_get_contents();
+        ob_end_clean();
+        require __DIR__ . '/../../views/user/layouts/main.view.php';
     }
 }
