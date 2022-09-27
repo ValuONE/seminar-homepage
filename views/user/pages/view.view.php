@@ -25,7 +25,7 @@ if (isset($_POST['startEdit']) || isset($showEdit)): ?>
 
     <h3 class="img-desc">Das Bild lässt sich nicht ändern!</h3>
 
-    <img class="img" src="../../../assets/uploads/<?php echo $data['filename'];?>" alt="Picture">
+    <img class="img" src="../../../assets/uploads_blog/<?php echo $data['filename'];?>" alt="Picture">
 
 <?php elseif (isset($_POST['startDelete'])): ?>
 
@@ -67,7 +67,7 @@ if (isset($_POST['startEdit']) || isset($showEdit)): ?>
         <p class="date"><?php echo date("j.n.Y H:i", $data['created_at']);?></p>
         <p class="text"><?php echo $data['content'];?></p>
         <p class="author">Verfasst von <?php echo $data['author'];?></p>
-        <img class="img" src="../../../assets/uploads/<?php echo $data['filename'];?>" alt="Picture">
+        <img class="img" src="../../../assets/uploads_blog/<?php echo $data['filename'];?>" alt="Picture">
     </div>
 
 <?php endif; ?>
