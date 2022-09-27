@@ -29,7 +29,7 @@ $userViewController = new UserViewController($contentHandler);
 $userHomeController = new UserHomeController($contentHandler);
 $userVoteController = new UserVoteController($voteHandler);
 
-$route = @(string) ($_GET['route'] ?? 'vote');
+$route = @(string) ($_GET['route'] ?? 'home');
 
 switch ($route) {
     case ('home'): {
@@ -41,6 +41,7 @@ switch ($route) {
         break;
     }
     case ('vote'): {
+        $authService->ensureUserLogin();
         $userVoteController->vote();
         break;
     }
