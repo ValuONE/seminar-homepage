@@ -16,6 +16,8 @@ class UserViewController extends AbstractController
 
     public function view(): void
     {
+        $this->contentHandler->ensureSession();
+
         $data = null;
         $showEdit = null;
 
