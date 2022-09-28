@@ -16,7 +16,15 @@ class UserHomeController extends AbstractController
 
     public function home()
     {
+        $this->contentHandler->ensureSession();
+
         $this->renderUser('pages/home', 'home.main.css');
     }
 
+    public function error(): void
+    {
+        $this->contentHandler->ensureSession();
+
+        $this->renderError();
+    }
 }
