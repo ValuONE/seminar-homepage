@@ -16,6 +16,8 @@ class UserVoteController extends AbstractController
 
     public function vote(): void
     {
+        $this->voteHandler->ensureSession();
+
         $error = null;
         $images = $this->voteHandler->fetchAllOfUser($_SESSION['username']);
 
