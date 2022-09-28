@@ -74,4 +74,9 @@ class VoteHandler
         return $stmt->fetchAll();
     }
 
+    public function ensureSession(): void
+    {
+        if (session_status() === PHP_SESSION_NONE) session_start();
+    }
+
 }
