@@ -25,8 +25,12 @@
                 <ul class="nav__wrapper">
                     <li class="nav__item"><a href="./index.php?route=home"><i class="fa-solid fa-house"></i> Home</a></li>
                     <li class="nav__item"><a href="./index.php?route=blog"><i class="fa-solid fa-square-rss"></i> Blog</a></li>
-                    <?php if (isset($_SESSION['username'])): ?><li class="nav__item"><a href="./index.php?route=vote"><i class="fas fa-vote-yea"></i> Vote</a></li><?php endif; ?>
-                    <li class="nav__item"><a href="./index.php?route=login"><i class="fa-solid fa-right-to-bracket"></i> Log-in</a></li>
+                    <?php if (isset($_SESSION['username'])): ?>
+                        <li class="nav__item"><a href="./index.php?route=vote"><i class="fas fa-vote-yea"></i> Vote</a></li>
+                        <li class="nav__item"><a href="./index.php?route=logout"><i class="fa-solid fa-circle-xmark"></i> Logout</a></li>
+                    <?php else: ?>
+                        <li class="nav__item"><a href="./index.php?route=login"><i class="fa-solid fa-right-to-bracket"></i> Log-in</a></li>
+                    <?php endif; ?>
                 </ul>
             </nav>
             <a href="#" class="brand">Murnauer Moos</a>
