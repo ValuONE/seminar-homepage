@@ -16,6 +16,8 @@ class UserVerifyController extends AbstractController
 
     public function verify(): void
     {
+        $this->authService->ensureSession();
+
         $error = null;
         $notMatching = null;
 
