@@ -14,10 +14,12 @@ $(function() {
                 reader.readAsDataURL(input.files[i]);
             }
         }
-
     };
 
     $('#gallery-photo-add').on('change', function() {
+        $('.gallery img').each(function(){
+            $(this).remove()
+        });
         imagesPreview(this, 'div.gallery');
     });
 });
