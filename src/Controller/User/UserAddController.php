@@ -16,6 +16,8 @@ class UserAddController extends AbstractController
 
     public function add()
     {
+        $this->contentHandler->ensureSession();
+
         $error = null;
 
         if (!empty($_POST)) {
