@@ -15,7 +15,7 @@ class ContentHandler
 
     public function fetchAll(): bool|array
     {
-        $stmt = $this->pdo->prepare('SELECT * FROM `blog`');
+        $stmt = $this->pdo->prepare('SELECT * FROM `blog` ORDER BY `created_at` DESC');
         $success = $stmt->execute();
 
         if (!$success) return false;
