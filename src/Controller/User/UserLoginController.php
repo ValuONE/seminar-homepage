@@ -16,6 +16,8 @@ class UserLoginController extends AbstractController
 
     public function login(): void
     {
+        $this->authService->ensureSession();
+
         if (isset($_POST)) {
             $username = @(string) ($_POST['username'] ?? '');
             $password = @(string) ($_POST['password'] ?? '');
@@ -31,5 +33,14 @@ class UserLoginController extends AbstractController
             }
         }
         $this->renderUser('pages/login',  'login.main.css', []);
+    }
+
+    public function logout(): void
+    {
+        $this->authService->ensureSession();
+
+        unset($_SESSION['username']);
+
+        header('Location: ./?route=login');
     }
 }
