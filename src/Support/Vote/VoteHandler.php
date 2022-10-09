@@ -74,9 +74,17 @@ class VoteHandler
         return $stmt->fetchAll();
     }
 
+    public function fetchAll(): bool|array
+    {
+        $stmt = $this->pdo->prepare('SELECT * FROM `images`');
+        $success = $stmt->execute();
+        if (!$success) return false;
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function ensureSession(): void
     {
         if (session_status() === PHP_SESSION_NONE) session_start();
     }
-
 }
