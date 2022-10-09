@@ -65,3 +65,16 @@
 .checkbox {
     margin-left: 25px;
 }
+
+.container-item {
+    width: 300px;
+    overflow: hidden;
+    border: 1px solid black;
+    margin: 10px;
+    float: left;
+    border-radius: 13px;
+}
+
+.container-item img {
+    width: 300px;
+}
