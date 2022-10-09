@@ -5,7 +5,7 @@
  * @author Valu
  */
 
-if (isset($images)): ?>
+if (isset($images) && !isset($_POST['startVote'])): ?>
 
     <h2 class="myPicture-title">Alle meine hochgeladenen Bilder:</h2>
 
@@ -27,13 +27,37 @@ if (isset($images)): ?>
         <h3 class="vote-title">Das Voting startet in: <span id="clock"></span></h3>
 
         <form method="post" action="./?route=vote">
-            <input class="vote-button" type="submit" name="startVote" value="Abstimmen" disabled>
+            <?php // TODO: "disabled" wieder einfügen! ?>
+            <input class="vote-button" type="submit" name="startVote" value="Abstimmen">
         </form>
     </div>
 
 <?php elseif(isset($_POST['startVote']) || isset($showVote)): ?>
 
-    <h3>das Voting</h3>
+    <h3>Du kannst nun abstimmen! Jeder hat X Stimmen und die Entscheidung kann nicht geändert werden.</h3>
+
+    <?php if (isset($allImg)): ?>
+
+        <form method="post" action="./?route=vote">
+
+            <input type="submit" name="confirm" value="Abstimmen">
+
+            <?php foreach ($allImg as $img): ?>
+
+                <div class="container-item">
+                    <img src="../../../assets/uploads_vote/<?php echo $img['filename'];?>" alt="Picture">
+                    <a href="https://youtube.com" target="_blank" rel="noopener"><button>Vollbild</button></a>
+                    <label>
+                        Auswählen
+                        <input type="checkbox" name="<?php echo e($img['id']); ?>">
+                    </label>
+                </div>
+
+            <?php endforeach; ?>
+
+        </form>
+
+    <?php endif; ?>
 
 <?php else: ?>
 
@@ -74,7 +98,8 @@ if (isset($images)): ?>
         <h3 class="vote-title">Das Voting startet in: <span id="clock"></span></h3>
 
         <form method="post" action="./?route=vote">
-            <input class="vote-button" type="submit" name="startVote" value="Abstimmen" disabled>
+            <?php // TODO: "disabled" wieder einfügen! ?>
+            <input class="vote-button" type="submit" name="startVote" value="Abstimmen">
         </form>
     </div>
 
