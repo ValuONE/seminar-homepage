@@ -19,6 +19,7 @@ class UserVoteController extends AbstractController
         $this->voteHandler->ensureSession();
 
         $error = null;
+        $allImg = null;
         $images = $this->voteHandler->fetchAllOfUser($_SESSION['username']);
 
         if(isset($_POST['upload'])) {
@@ -38,13 +39,18 @@ class UserVoteController extends AbstractController
             }
         }
 
+        if (isset($_POST['startVote'])) {
+            $allImg = $this->voteHandler->fetchAll();
+        }
+
         if (isset($_POST['confirm'])) {
 
         }
 
         $this->renderUser('pages/vote', 'vote.main.css', [
             'error' => $error,
-            'images' => $images
+            'images' => $images,
+            'allImg' => $allImg
         ]);
     }
 }
