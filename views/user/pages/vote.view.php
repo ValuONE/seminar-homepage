@@ -45,8 +45,7 @@ if (isset($images) && !isset($_POST['startVote'])): ?>
             <?php foreach ($allImg as $img): ?>
 
                 <div class="container-item">
-                    <img src="../../../assets/uploads_vote/<?php echo $img['filename'];?>" alt="Picture">
-                    <a href="https://youtube.com" target="_blank" rel="noopener"><button>Vollbild</button></a>
+                    <img id="myImg" src="../../../assets/uploads_vote/<?php echo $img['filename'];?>" alt="Vollbild">
                     <label>
                         Auswählen
                         <input type="checkbox" name="<?php echo e($img['id']); ?>">
@@ -56,6 +55,12 @@ if (isset($images) && !isset($_POST['startVote'])): ?>
             <?php endforeach; ?>
 
         </form>
+
+        <div id="myModal" class="modal">
+            <span class="close">&times;</span>
+            <img class="modal-content" id="img01" alt="Picture">
+            <div id="caption"></div>
+        </div>
 
     <?php endif; ?>
 
