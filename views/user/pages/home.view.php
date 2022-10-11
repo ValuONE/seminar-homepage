@@ -28,3 +28,4 @@
 </div>
 <a id="prev" class="control prev" onclick="prev()"></a>
 <a id="next" class="control next" onclick="next()"></a>
+<script src="../../../assets/js/slider.js"></script>
