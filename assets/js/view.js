@@ -1,28 +1,28 @@
-const modal = document.getElementById('myModal');
+$('img[data-enlargeable]').addClass('img-enlargeable').click(function() {
+    const src = $(this).attr('src');
+    let modal;
 
-const img = document.getElementById('myImg');
-const modalImg = document.getElementById("img01");
-const captionText = document.getElementById("caption");
-const span = document.getElementsByClassName("close")[0];
-
-img.onclick = function(){
-    modal.style.display = "block";
-    modalImg.src = this.src;
-    captionText.innerHTML = this.alt;
-}
-
-span.onclick = function() {
-    modal.style.display = "none";
-}
-
-/*
-function open() {
-    modal.style.display = "block";
-    modalImg.src = this.src;
-    captionText.innerHTML = this.alt;
-}
-
-function close() {
-    modal.style.display = "none";
-}
-*/
+    function removeModal() {
+        modal.remove();
+        $('body').off('keyup.modal-close');
+    }
+    modal = $('<div>').css({
+        background: 'RGBA(0,0,0,.5) url(' + src + ') no-repeat center',
+        backgroundSize: 'contain',
+        width: '100%',
+        height: '100%',
+        position: 'fixed',
+        zIndex: '10000',
+        top: '0',
+        left: '0',
+        cursor: 'zoom-out'
+    }).click(function() {
+        removeModal();
+    }).appendTo('body');
+    //handling ESC
+    $('body').on('keyup.modal-close', function(e) {
+        if (e.key === 'Escape') {
+            removeModal();
+        }
+    });
+});
