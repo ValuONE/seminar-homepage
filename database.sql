@@ -75,6 +75,7 @@ CREATE TABLE `users` (
                          `username` varchar(255) NOT NULL,
                          `password` varchar(255) NOT NULL,
                          `created_at` varchar(255) NOT NULL,
+                         `voted` tinyint(1) DEFAULT 0,
                          `verified` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
