@@ -42,7 +42,7 @@ class VoteHandler
                 return  false;
             }
 
-            $fileNameNew = "blog" . "_" . uniqid() . "." . $fileActualExt;
+            $fileNameNew = "vote" . "_" . uniqid() . "." . $fileActualExt;
 
             $fileDest = __DIR__ . '/../../../assets/uploads_vote/' . $fileNameNew;
 
@@ -57,6 +57,24 @@ class VoteHandler
         }
 
         return true;
+    }
+
+    public function handleVote(array $post, string $username): void
+    {
+        $result = $this->canVote($username);
+        if ($result) return;
+
+        $min = $this->getLimit('ASC');
+        $max = $this->getLimit('DESC');
+
+        for($i = $min['id']; $i < $max['id']; $i++) {
+            if (isset($post[$i]) && $post[$i] === 'on') {
+                $this->createLike($i, $username);
+                $this->updateLike($i);
+            }
+        }
+        
+        $this->disableVote($username);
     }
 
     public function fetchAllOfUser(string $username): ?array
@@ -81,6 +99,51 @@ class VoteHandler
         if (!$success) return false;
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getLimit(string $param): ?array
+    {
+        $stmt = $this->pdo->prepare('SELECT `id` FROM `images` ORDER BY `id` ' . $param . ' LIMIT 1;');
+        $success = $stmt->execute();
+        if (!$success) return null;
+
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        return $stmt->fetch();
+    }
+
+    private function createLike(int $id, string $username): void
+    {
+        $stmt = $this->pdo->prepare('INSERT INTO `likes` (`image_id`, `voted_by`, `voted_at`) VALUES (:image_id, :voted_by, :voted_at)');
+        $stmt->bindValue('image_id', $id);
+        $stmt->bindValue('voted_by', $username);
+        $stmt->bindValue('voted_at', time());
+        $stmt->execute();
+    }
+
+    private function updateLike(int $id): void
+    {
+        $stmt = $this->pdo->prepare('UPDATE `images` SET `likes` = `likes` + 1 WHERE `id`= :id');
+        $stmt->bindValue('id', $id);
+        $stmt->execute();
+    }
+
+    public function canVote(string $username): bool
+    {
+        $stmt = $this->pdo->prepare('SELECT `voted` FROM `users` WHERE `username` = :username');
+        $stmt->bindValue('username', $username);
+        $stmt->execute();
+
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $data = $stmt->fetch();
+
+        return $data['voted'];
+    }
+
+    private function disableVote(string $username): void
+    {
+        $stmt = $this->pdo->prepare('UPDATE `users` SET `voted` = 1 WHERE `username` = :username');
+        $stmt->bindValue('username', $username);
+        $stmt->execute();
     }
 
     public function ensureSession(): void
