@@ -40,9 +40,6 @@
         </div>
     </header>
     <?php if (!empty($content)) echo $content; ?>
-    <script src="../../../assets/js/view.js"></script>
     <script src="../../../assets/js/menu.js"></script>
-    <script src="../../../assets/js/slider.js"></script>
-    <script src="../../../assets/js/preview.js"></script>
 </body>
 </html>
