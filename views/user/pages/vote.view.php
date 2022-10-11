@@ -5,7 +5,7 @@
  * @author Valu
  */
 
-if (isset($images) && !isset($_POST['startVote'])): ?>
+if (isset($images) && !isset($_POST['startVote']) && !isset($showVote) && isset($showRanking) && !$showRanking): ?>
 
     <h2 class="myPicture-title">Alle meine hochgeladenen Bilder:</h2>
 
@@ -32,35 +32,81 @@ if (isset($images) && !isset($_POST['startVote'])): ?>
         </form>
     </div>
 
+<?php elseif(isset($showRanking) && $showRanking): ?>
+
+    <h3 class="title">Das Ergebnis wird bald gezeigt!</h3>
+
 <?php elseif(isset($_POST['startVote']) || isset($showVote)): ?>
 
-    <h3>Du kannst nun abstimmen! Jeder hat X Stimmen und die Entscheidung kann nicht geändert werden.</h3>
+    <?php if (isset($error) && isset($votes)): ?>
+        <h3 class="warning">Es müssen genau <?php echo e($votes); ?> Bilder ausgewählt werden</h3>
+    <?php endif; ?>
+
+    <?php if (isset($votes)): ?>
+        <h3 class="title">Du kannst nun abstimmen! Jeder hat <?php echo e($votes); ?> Stimmen und die Entscheidung kann nicht geändert werden.</h3>
+    <?php endif; ?>
 
     <?php if (isset($allImg)): ?>
 
         <form method="post" action="./?route=vote">
 
-            <input type="submit" name="confirm" value="Abstimmen">
+            <div class="confirm-button-container">
+                <button type="submit" name="confirm" class="confirm-button" id="btn">6 Übrig</button>
+            </div>
 
-            <?php foreach ($allImg as $img): ?>
+            <div class="container">
 
-                <div class="container-item">
-                    <img id="myImg" src="../../../assets/uploads_vote/<?php echo $img['filename'];?>" alt="Vollbild">
-                    <label>
-                        Auswählen
-                        <input type="checkbox" name="<?php echo e($img['id']); ?>">
-                    </label>
-                </div>
+                <?php foreach ($allImg as $img): ?>
 
-            <?php endforeach; ?>
+                    <div class="container-item">
+                        <img data-enlargeable src="../../../assets/uploads_vote/<?php echo $img['filename'];?>" alt="Vollbild" id="myImg">
+                        <div class="container-checkbox">
+                            <label>
+                                Auswählen
+                                <input class="check" type="checkbox" name="<?php echo e($img['id']); ?>">
+                            </label>
+                        </div>
+                    </div>
+
+                <?php endforeach; ?>
+
+                <script>
+                    const votesString = "<?=$votes?>";
+                    const votes = parseInt(votesString);
+                    const button = document.getElementById("btn");
+
+                    $(document).ready(function() {
+                        $('.check').click(function() {
+                            const checkboxes = $('input:checkbox:checked').length;
+
+                            if (checkboxes < votes) {
+                                const left = (votes - checkboxes);
+                                button.style.cursor = "pointer";
+                                button.disabled = false;
+                                button.textContent = left + " Übrig";
+                            } else if(checkboxes === votes) {
+                                button.style.cursor = "pointer";
+                                button.disabled = false;
+                                button.textContent = "Abstimmen";
+                            } else if(checkboxes > votes) {
+                                const over = checkboxes - votes;
+                                button.style.cursor = "not-allowed";
+                                button.disabled = true;
+                                button.textContent = over + " Zuviel";
+                            } else if (checkboxes === 0) {
+                                button.style.cursor = "pointer";
+                                button.disabled = false;
+                                button.textContent = "6 Übrig";
+                            }
+                        })
+                    });
+                </script>
+
+            </div>
 
         </form>
 
-        <div id="myModal" class="modal">
-            <span class="close">&times;</span>
-            <img class="modal-content" id="img01" alt="Picture">
-            <div id="caption"></div>
-        </div>
+        <script src="../../../assets/js/view.js"></script>
 
     <?php endif; ?>
 
@@ -96,6 +142,7 @@ if (isset($images) && !isset($_POST['startVote'])): ?>
     <div class="gallery"></div>
 
     <script src="../../../assets/js/limiter.js"></script>
+    <script src="../../../assets/js/preview.js"></script>
 
     <hr>
 
