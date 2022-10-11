@@ -9,8 +9,7 @@ Small reminder i am very bad in front-end design, so please dont judge me :/
 - User Login
 - Add/Edit/Delete Posts
 - OOP-Based
-
-
+- Vote-System for Pictures
 
 ## Deployment
 
