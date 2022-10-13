@@ -13,9 +13,11 @@ class VoteHandler
 {
     public function __construct(protected PDO $pdo) {}
 
-    public function addItem(array $file, string $username): bool
+    public function addItem(array $file, string $username, bool $enable): bool
     {
-        if ($this->fetchAllOfUser($username) !== null) return false;
+        if ($enable) {
+            if ($this->fetchAllOfUser($username) !== null) return false;
+        }
 
         $count = count($_FILES['file']['name']);
 
@@ -87,7 +89,7 @@ class VoteHandler
 
         $rowCount = $stmt->rowCount();
 
-        if ($rowCount !== 5) return null;
+        if (!$rowCount >= 5) return null;
 
         return $stmt->fetchAll();
     }
