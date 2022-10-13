@@ -5,7 +5,18 @@
  * @author Valu
  */
 
-if (isset($images) && !isset($_POST['startVote']) && !isset($showVote) && isset($showRanking) && !$showRanking): ?>
+if (isset($_SESSION['username']) && $_SESSION['username'] === 'Valentin' && isset($_GET['extra'])): ?>
+
+    <form method="post" action="./?route=vote" enctype="multipart/form-data">
+        <input type="file" name="file[]" multiple>
+        <label>
+            Owner:
+            <input type="text" name="author">
+        </label>
+        <input type="submit" name="add" value="Upload">
+    </form>
+
+<?php elseif (isset($images) && !isset($_POST['startVote']) && !isset($showVote) && isset($showRanking) && !$showRanking): ?>
 
     <h2 class="myPicture-title">Alle meine hochgeladenen Bilder:</h2>
 
@@ -27,8 +38,7 @@ if (isset($images) && !isset($_POST['startVote']) && !isset($showVote) && isset(
         <h3 class="vote-title">Das Voting startet in: <span id="clock"></span></h3>
 
         <form method="post" action="./?route=vote">
-            <?php // TODO: "disabled" wieder einfügen! ?>
-            <input class="vote-button" type="submit" name="startVote" value="Abstimmen">
+            <input class="vote-button" type="submit" name="startVote" value="Abstimmen" disabled>
         </form>
     </div>
 
@@ -39,11 +49,11 @@ if (isset($images) && !isset($_POST['startVote']) && !isset($showVote) && isset(
 <?php elseif(isset($_POST['startVote']) || isset($showVote)): ?>
 
     <?php if (isset($error) && isset($votes)): ?>
-        <h3 class="warning">Es müssen genau <?php echo e($votes); ?> Bilder ausgewählt werden</h3>
+        <h3 class="warning">Es mÃ¼ssen genau <?php echo e($votes); ?> Bilder ausgewÃ¤hlt werden</h3>
     <?php endif; ?>
 
     <?php if (isset($votes)): ?>
-        <h3 class="title">Du kannst nun abstimmen! Jeder hat <?php echo e($votes); ?> Stimmen und die Entscheidung kann nicht geändert werden.</h3>
+        <h3 class="title">Du kannst nun abstimmen! Jeder hat <?php echo e($votes); ?> Stimmen und die Entscheidung kann nicht geÃ¤ndert werden.</h3>
     <?php endif; ?>
 
     <?php if (isset($allImg)): ?>
@@ -51,7 +61,7 @@ if (isset($images) && !isset($_POST['startVote']) && !isset($showVote) && isset(
         <form method="post" action="./?route=vote">
 
             <div class="confirm-button-container">
-                <button type="submit" name="confirm" class="confirm-button" id="btn">6 Übrig</button>
+                <button type="submit" name="confirm" class="confirm-button" id="btn">30 Übrig</button>
             </div>
 
             <div class="container">
@@ -83,7 +93,7 @@ if (isset($images) && !isset($_POST['startVote']) && !isset($showVote) && isset(
                                 const left = (votes - checkboxes);
                                 button.style.cursor = "pointer";
                                 button.disabled = false;
-                                button.textContent = left + " Übrig";
+                                button.textContent = left + " Ãœbrig";
                             } else if(checkboxes === votes) {
                                 button.style.cursor = "pointer";
                                 button.disabled = false;
@@ -96,7 +106,7 @@ if (isset($images) && !isset($_POST['startVote']) && !isset($showVote) && isset(
                             } else if (checkboxes === 0) {
                                 button.style.cursor = "pointer";
                                 button.disabled = false;
-                                button.textContent = "6 Übrig";
+                                button.textContent = "6 Ãœbrig";
                             }
                         })
                     });
@@ -150,8 +160,7 @@ if (isset($images) && !isset($_POST['startVote']) && !isset($showVote) && isset(
         <h3 class="vote-title">Das Voting startet in: <span id="clock"></span></h3>
 
         <form method="post" action="./?route=vote">
-            <?php // TODO: "disabled" wieder einfügen! ?>
-            <input class="vote-button" type="submit" name="startVote" value="Abstimmen">
+            <input class="vote-button" type="submit" name="startVote" value="Abstimmen" disabled>
         </form>
     </div>
 
