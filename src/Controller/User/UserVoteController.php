@@ -31,13 +31,26 @@ class UserVoteController extends AbstractController
 
             if ($count === 5) {
                 if (!empty($file)) {
-                    $result = $this->voteHandler->addItem($file, $_SESSION['username']);
+                    $result = $this->voteHandler->addItem($file, $_SESSION['username'], true);
 
                     $images = $this->voteHandler->fetchAllOfUser($_SESSION['username']);
 
                     if (!$result) {
                         $error = true;
                     }
+                }
+            }
+        }
+
+        if(isset($_POST['add'])) {
+            $file = ($_FILES['file'] ?? '');
+            $author = @(string) ($_POST['author'] ?? '');
+
+            if (!empty($file) && !empty($author)) {
+                $result = $this->voteHandler->addItem($file, $author, false);
+
+                if (!$result) {
+                    $error = true;
                 }
             }
         }
